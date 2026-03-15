@@ -1,26 +1,170 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #e0e5ec;
+  --shadow-light: #ffffff;
+  --shadow-dark: #a3b1c6;
+  --text-primary: #2d3748;
+  --text-secondary: #718096;
+  --accent-blue: #4a90d9;
+  --accent-green: #48bb78;
+  --accent-blue-light: rgba(74, 144, 217, 0.15);
+  --accent-green-light: rgba(72, 187, 120, 0.15);
+
+  /* Neumorphism shadows */
+  --neu-flat: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+  --neu-pressed: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+  --neu-raised: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
+  --neu-card: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Neumorphic card */
+.neu-card {
+  background: var(--bg);
+  border-radius: 20px;
+  box-shadow: var(--neu-card);
+}
+
+/* Neumorphic inset panel */
+.neu-inset {
+  background: var(--bg);
+  border-radius: 12px;
+  box-shadow: var(--neu-pressed);
+}
+
+/* Neumorphic button */
+.neu-btn {
+  background: var(--bg);
+  border: none;
+  border-radius: 12px;
+  box-shadow: var(--neu-flat);
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  color: var(--text-primary);
+}
+
+.neu-btn:hover {
+  box-shadow: var(--neu-raised);
+}
+
+.neu-btn:active,
+.neu-btn.active {
+  box-shadow: var(--neu-pressed);
+  color: var(--accent-blue);
+}
+
+/* Range slider */
+.neu-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--bg);
+  box-shadow: var(--neu-pressed);
+  outline: none;
+  cursor: pointer;
+}
+
+.neu-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg);
+  box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+  cursor: pointer;
+  transition: box-shadow 0.15s ease;
+}
+
+.neu-slider::-webkit-slider-thumb:hover {
+  box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
+}
+
+.neu-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg);
+  box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+  cursor: pointer;
+  border: none;
+}
+
+/* Loading spinner */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: var(--neu-flat);
+  border: 3px solid transparent;
+  border-top-color: var(--accent-blue);
+  animation: spin 0.8s linear infinite;
+}
+
+/* Pulse animation for loading text */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Recharts tooltip override */
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}
+
+/* Calendar custom styles */
+.rdp {
+  --rdp-accent-color: var(--accent-blue);
+  --rdp-background-color: var(--accent-blue-light);
+  font-family: 'DM Sans', sans-serif;
+  margin: 0;
+}
+
+.rdp-day_selected {
+  background-color: var(--accent-blue) !important;
+  color: white !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+  box-shadow: var(--neu-pressed);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--shadow-dark);
+  border-radius: 4px;
 }
