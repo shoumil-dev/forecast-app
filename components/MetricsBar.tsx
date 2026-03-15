@@ -48,7 +48,6 @@ export default function MetricsBar({ metrics, horizonHours }: MetricsBarProps) {
           className="neu-inset"
           style={{ padding: "16px", textAlign: "center" }}
         >
-          <div style={{ fontSize: "22px", marginBottom: "6px" }}>{tile.icon}</div>
           <div
             style={{
               fontSize: "18px",
