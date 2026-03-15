@@ -30,7 +30,7 @@ function niceYTicks(min: number, max: number, count = 5): number[] {
   return ticks;
 }
 
-function useContainerWidth(ref: React.RefObject<HTMLDivElement>) {
+function useContainerWidth(ref: React.RefObject<HTMLDivElement | null>) {
   const [width, setWidth] = useState(640);
   useEffect(() => {
     if (!ref.current) return;
@@ -492,6 +492,7 @@ export default function WindForecastDashboard() {
       {/* Header */}
       <div style={{ marginBottom: "32px", textAlign: "center" }}>
         <div style={{ display: "inline-flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
+          <span style={{ fontSize: "28px" }}>🌬️</span>
           <h1 style={{ fontFamily: "Space Grotesk, sans-serif", fontSize: "clamp(20px, 4vw, 28px)",
             fontWeight: 700, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
             UK Wind Forecast Accuracy
