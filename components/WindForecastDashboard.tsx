@@ -446,6 +446,10 @@ export default function WindForecastDashboard() {
 
   const fetchData = useCallback(async () => {
     if (!fromDate || !toDate) return;
+    if (fromDate > toDate) {
+      setError("Start date must be before end date.");
+      return;
+    }
     setLoading(true);
     setError(null);
 
@@ -511,8 +515,16 @@ export default function WindForecastDashboard() {
           Controls
         </p>
         <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "24px" }}>
-          <NeuDateInput label="Start Date" value={fromDate} onChange={setFromDate} min={JAN_START} max={JAN_END} />
-          <NeuDateInput label="End Date"   value={toDate}   onChange={setToDate}   min={JAN_START} max={JAN_END} />
+          <NeuDateInput label="Start Date" value={fromDate} onChange={(v) => {
+            setFromDate(v);
+            if (v > toDate) setToDate(v);
+            setError(null);
+          }} min={JAN_START} max={JAN_END} />
+          <NeuDateInput label="End Date" value={toDate} onChange={(v) => {
+            setToDate(v);
+            if (v < fromDate) setFromDate(v);
+            setError(null);
+          }} min={JAN_START} max={JAN_END} />
         </div>
         <div style={{ marginBottom: "24px" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "12px" }}>
