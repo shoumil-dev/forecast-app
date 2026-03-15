@@ -1,6 +1,7 @@
 # Wind Forecast Dashboard
 
 A web application for visualizing and analyzing wind energy forecast accuracy in the UK.
+> Claude Sonnet 4.6 was the LLM used to assist in development.
 
 ## Getting Started
 
