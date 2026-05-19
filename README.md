@@ -42,3 +42,6 @@ The project follows a standard Next.js (App Router) architecture:
 
 The application is deployed on Vercel:
 [https://forecast-app-gamma-taupe.vercel.app/](https://forecast-app-gamma-taupe.vercel.app/)
+
+Link to demonstration video:
+https://www.youtube.com/watch?v=D22WlaOCdWo
